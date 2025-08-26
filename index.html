@@ -8,63 +8,86 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body{
-      margin:0;
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      font-family:"Poppins", sans-serif;
-      background: linear-gradient(135deg, #ff83a8, #ffcf70, #9ad7ff);
-      background-size: 400% 400%;
-      animation: gradientMove 12s ease infinite;
+    :root{
+      --ink:#2b244d;
+      --pink1:#ff8ab8; --pink2:#ff9bd3; --peach:#ffd77a; --sky:#a1e3ff; --rose:#ffc1da;
     }
-    @keyframes gradientMove {
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-family:"Poppins", sans-serif;
+      color:var(--ink);
+      background: linear-gradient(120deg, var(--pink1), var(--peach), var(--sky), var(--rose));
+      background-size: 300% 300%;
+      animation: bgShift 20s ease-in-out infinite;
+      overflow:hidden;
+      text-align:center;
+    }
+    @keyframes bgShift{
       0%{background-position:0% 50%}
       50%{background-position:100% 50%}
       100%{background-position:0% 50%}
     }
+
+    .floaters{position:fixed; inset:-10% -20%; pointer-events:none; z-index:0}
+    .blob{position:absolute; border-radius:50%; filter:blur(10px); opacity:.35; mix-blend-mode:soft-light;}
+    .blob.b1{background:var(--pink2); width:280px; height:280px; left:8%; top:12%; animation: drift1 18s ease-in-out infinite alternate}
+    .blob.b2{background:var(--sky); width:220px; height:220px; right:10%; top:20%; animation: drift2 22s ease-in-out infinite alternate}
+    .blob.b3{background:var(--peach); width:260px; height:260px; left:15%; bottom:12%; animation: drift3 20s ease-in-out infinite alternate}
+    @keyframes drift1{to{transform:translate(24px,-18px)}}
+    @keyframes drift2{to{transform:translate(-20px,16px)}}
+    @keyframes drift3{to{transform:translate(18px,22px)}}
+
+    .wrap{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:22px;}
+
     h1{
-      position:absolute;
-      top:30px;
-      text-align:center;
-      font-size: clamp(22px, 5vw, 36px);
-      font-weight:700;
-      color:#2b244d;
+      position:absolute; top:26px; left:50%; transform:translateX(-50%);
+      margin:0; font-weight:700; font-size:clamp(22px,5vw,36px);
+      color:var(--ink); text-shadow:0 2px 0 rgba(255,255,255,.45);
     }
+
     .photo{
-      width:250px; 
-      height:250px; 
-      object-fit:cover;
-      border-radius:20px;
-      margin-bottom:25px;
+      width:260px; height:260px; object-fit:cover; border-radius:22px;
       box-shadow:0 12px 28px rgba(0,0,0,.25);
+      animation: photoPulse 7s ease-in-out infinite;
+      will-change: transform;
     }
+    @keyframes photoPulse{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.035)}
+      100%{transform:scale(1)}
+    }
+
     .cta{
-      padding:1rem 2rem;
-      border-radius:999px;
-      font-weight:600;
-      font-size:1.1rem;
-      text-decoration:none;
-      background:#2b244d;
-      color:#fff;
-      box-shadow:0 10px 24px rgba(0,0,0,.25);
-      transition:transform .2s ease, box-shadow .2s ease;
+      display:inline-block; padding:1rem 2rem; border-radius:999px; font-weight:700; font-size:1.05rem;
+      color:#fff; text-decoration:none; background:#2b244d; box-shadow:0 10px 24px rgba(0,0,0,.25);
+      transition:transform .2s ease, box-shadow .2s ease; will-change:transform;
     }
-    .cta:hover{
-      transform:translateY(-3px);
-      box-shadow:0 14px 28px rgba(0,0,0,.3);
+    .cta:hover{transform:translateY(-3px); box-shadow:0 14px 28px rgba(0,0,0,.3)}
+
+    @media (prefers-reduced-motion: reduce){
+      body{animation:none}
+      .blob, .photo{animation:none}
     }
   </style>
 </head>
 <body>
+  <div class="floaters" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
   <h1>Swan 🦢 | For the Woman Who Shines✨</h1>
 
-  <img src="SSWAN_STOREE_20250820_195345_0000.jpg" alt="Swan Storee Logo" class="photo" />
+  <main class="wrap">
+    <img src="SSWAN_STOREE_20250820_195345_0000.jpg" alt="Swan Storee" class="photo" />
 
-  <a class="cta" href="https://www.instagram.com/sswan_storee?igsh=cHpkamVsb2h0MWRn" target="_blank" rel="noopener noreferrer">
-    Visit Instagram
-  </a>
+    <a class="cta" href="https://www.instagram.com/sswan_storee?igsh=cHpkamVsb2h0MWRn" target="_blank" rel="noopener noreferrer">
+      Visit Instagram
+    </a>
+  </main>
 </body>
 </html>
