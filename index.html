@@ -3,178 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SSWAN • Women Dress</title>
-  <meta name="description" content="Colorful landing page for women's dresses with a central image that links directly to Instagram." />
+  <title>Swan 🦢 | For the Woman Who Shines✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg1:#ff83a8; /* pink */
-      --bg2:#ffcf70; /* peach */
-      --bg3:#9ad7ff; /* sky */
-      --ink:#2b244d; /* deep plum */
-      --white:#ffffff;
-      --accent:#7b5cff; /* lilac */
-      --accent2:#ff6b9c; /* rose */
-    }
-
-    /* --- Reset --- */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
     body{
-      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      color:var(--ink);
-      overflow-x:hidden;
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.25), transparent 60%),
-                  radial-gradient(1000px 700px at 80% 30%, rgba(255,255,255,.18), transparent 70%),
-                  linear-gradient(120deg, var(--bg1), var(--bg2) 50%, var(--bg3));
-      background-attachment: fixed;
+      margin:0;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      font-family:"Poppins", sans-serif;
+      background: linear-gradient(135deg, #ff83a8, #ffcf70, #9ad7ff);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
     }
-
-    /* Animated gradient sheen */
-    body::before{
-      content:"";
-      position:fixed;inset:-50%;
-      background: conic-gradient(from 0deg, rgba(255,255,255,.12), rgba(255,255,255,0) 25%, rgba(255,255,255,.12) 50%, rgba(255,255,255,0) 75%, rgba(255,255,255,.12));
-      filter: blur(60px);
-      animation: spin 30s linear infinite;
-      z-index:0;
-      pointer-events:none;
+    @keyframes gradientMove {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    /* Floating shapes for motion */
-    .floaters{position:fixed;inset:0;pointer-events:none;z-index:1}
-    .blob{
-      position:absolute; border-radius:50%; opacity:.35; filter: blur(10px);
-      animation: drift var(--dur,18s) ease-in-out infinite alternate;
-      mix-blend-mode: soft-light;
-    }
-    .blob:nth-child(1){background:var(--accent); width:260px; height:260px; top:8%; left:6%; --dur: 16s}
-    .blob:nth-child(2){background:var(--accent2); width:200px;height:200px; bottom:12%; right:10%; --dur: 20s}
-    .blob:nth-child(3){background:#ffd1e6; width:180px;height:180px; top:60%; left:15%; --dur: 22s}
-    .blob:nth-child(4){background:#a5ffef; width:220px;height:220px; top:25%; right:18%; --dur: 19s}
-    @keyframes drift{
-      0%{transform: translateY(0) translateX(0)}
-      100%{transform: translateY(-30px) translateX(20px)}
-    }
-
-    /* Layout */
-    .wrap{
-      position:relative; z-index:2;
-      min-height:100dvh; display:grid; place-items:center; padding: clamp(16px, 3vw, 40px);
-    }
-
-    .card{
-      width:min(980px, 92vw); display:grid; gap:28px; align-items:center; justify-items:center;
+    h1{
+      position:absolute;
+      top:30px;
       text-align:center;
-      background: rgba(255,255,255,.35);
-      border: 1px solid rgba(255,255,255,.5);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 28px; padding: clamp(18px, 4vw, 36px);
-      box-shadow: 0 20px 60px rgba(43,36,77,.25);
-      animation: float 6s ease-in-out infinite;
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight:700;
+      color:#2b244d;
     }
-    @keyframes float{ 0%,100%{ transform: translateY(0)} 50%{ transform: translateY(-8px)} }
-
-    .title{
-      font-size: clamp(28px, 5vw, 48px); font-weight:800; line-height:1.05; letter-spacing:.3px;
-      color: var(--ink);
-      text-shadow: 0 2px 0 rgba(255,255,255,.4);
+    .cta{
+      padding:1rem 2rem;
+      border-radius:999px;
+      font-weight:600;
+      font-size:1.1rem;
+      text-decoration:none;
+      background:#2b244d;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .subtitle{font-size: clamp(14px, 2.2vw, 18px); opacity:.9}
-
-    /* --- Center image link --- */
-    .insta-link{ display:inline-block; position:relative; border-radius: 22px; overflow:hidden; }
-
-    .photo{
-      display:block; width:min(520px, 84vw); aspect-ratio: 1 / 1; object-fit:cover;
-      border-radius: 22px; box-shadow: 0 16px 40px rgba(43,36,77,.35);
-      transform: translateZ(0);
-      transition: transform .35s ease, box-shadow .35s ease, filter .35s ease;
-      outline: 0 solid rgba(123,92,255,.0);
+    .cta:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 28px rgba(0,0,0,.3);
     }
-
-    /* Glow ring */
-    .insta-link::after{
-      content:""; position:absolute; inset:-2px; border-radius: 24px;
-      padding:2px; background: linear-gradient(135deg, var(--accent), var(--accent2), #ffcd4a, #54d1ff);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      animation: hue 8s linear infinite;
-    }
-    @keyframes hue{to{filter:hue-rotate(360deg)}}
-
-    /* Hover / tap feedback */
-    .insta-link:active .photo,
-    .insta-link:hover .photo{
-      transform: scale(1.03) rotate(-.6deg);
-      box-shadow: 0 20px 48px rgba(43,36,77,.45);
-      filter: saturate(1.1) contrast(1.02);
-      outline-width: 10px; outline-color: rgba(123,92,255,.18);
-    }
-
-    /* CTA */
-    .cta{ display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius: 999px; border: 0;
-      font-weight:700; text-decoration:none; cursor:pointer; background: var(--ink); color:var(--white);
-      box-shadow: 0 10px 24px rgba(43,36,77,.3);
-      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-    }
-    .cta:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(43,36,77,.35) }
-    .cta:active{ transform: translateY(0) scale(.98) }
-
-    /* Badge row */
-    .badges{display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; opacity:.95}
-    .tag{ padding:.4rem .8rem; background: rgba(255,255,255,.55); border:1px solid rgba(255,255,255,.8); border-radius:999px; font-size:.85rem; font-weight:600 }
-
-    /* Footer */
-    footer{margin-top:8px; opacity:.8; font-size:.85rem}
-
   </style>
 </head>
 <body>
-  <!-- soft motion background blobs -->
-  <div class="floaters" aria-hidden="true">
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-  </div>
-
-  <main class="wrap">
-    <section class="card">
-      <h1 class="title">SSWAN Styles — Women Dress</h1>
-      <p class="subtitle">Tap the photo to visit our Instagram and discover colorful dresses, abayas, and accessories ✨</p>
-
-      <!-- Replace the src with your image file name (e.g., images/hero.jpg) -->
-      <a class="insta-link" href="https://www.instagram.com/sswan_storee?igsh=cHpkamVsb2h0MWRn" target="_blank" rel="noopener noreferrer" aria-label="Open SSWAN Instagram">
-        <img class="photo" src="your-image.jpg" alt="Women dress — tap to open our Instagram" />
-      </a>
-
-      <div class="badges" aria-hidden="true">
-        <span class="tag">New Arrivals</span>
-        <span class="tag">Elegant</span>
-        <span class="tag">Colorful</span>
-        <span class="tag">Summer ‘25</span>
-      </div>
-
-      <a class="cta" href="https://www.instagram.com/sswan_storee?igsh=cHpkamVsb2h0MWRn" target="_blank" rel="noopener noreferrer" aria-label="Shop on Instagram">
-        <!-- Instagram-like icon with CSS only -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.8a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.8z"/>
-        </svg>
-        Open Instagram
-      </a>
-
-      <footer>© <span id="year"></span> SSWAN Store • All Rights Reserved</footer>
-    </section>
-  </main>
-
-  <script>
-    // Update year automatically
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <h1>Swan 🦢 | For the Woman Who Shines✨</h1>
+  <a class="cta" href="https://www.instagram.com/sswan_storee?igsh=cHpkamVsb2h0MWRn" target="_blank" rel="noopener noreferrer">
+    Visit Instagram
+  </a>
 </body>
 </html>
